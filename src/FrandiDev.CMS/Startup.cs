@@ -20,6 +20,13 @@ namespace FrandiDev.CMS
             }
 
             app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                RequestPath = "/.well-known/acme-challenge",
+                ServeUnknownFileTypes = true
+            });
+
             app.UseOrchardCore();
         }
     }
