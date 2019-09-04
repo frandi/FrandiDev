@@ -1,7 +1,8 @@
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.Extensions.FileProviders;
 
 namespace FrandiDev.CMS
 {
@@ -23,6 +24,9 @@ namespace FrandiDev.CMS
 
             app.UseStaticFiles(new StaticFileOptions
             {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/.well-known/acme-challenge")
+                ),
                 RequestPath = "/.well-known/acme-challenge",
                 ServeUnknownFileTypes = true
             });
